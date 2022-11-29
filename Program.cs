@@ -1,12 +1,14 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using BlazorSQLTest.Data;
 using QuickDBS;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var db = new SQLServer("TestDB");
+string connectionString = @"Server=localhost\SqlExpress; Database=AdventureWorksLT2019; Trusted_Connection=true;";
+var db = new SQLServer(connectionString);
 
+// This line needs to be removed after first run.
+// It will generate a folder by name 'Models' with all
+// the classes for each table available in the database.
 db.GenerateClassesForTables("Table");
 
 // Add services to the container.
